@@ -2,15 +2,11 @@
 
 # создаём каталог task с вложенными директориями
 # task
-mkdir ./task
 #   dir1
-mkdir ./task/dir1
 #   dir2
-mkdir ./task/dir2
 #   dir3
-mkdir ./task/dir3
 #       dir4
-mkdir ./task/dir3/dir4
+mkdir -p task/dir1 task/dir2 task/di3/dir4
 
 # изменяем текущую директорию на task
 cd ./task
@@ -28,7 +24,7 @@ echo "$1, привет!"' > ./dir2/hello.sh
 chmod 764 ./dir2/hello.sh
 
 # сохраняем список файлов task/dir2 в task/dir2/list.txt
-ls -p ./dir2 | grep -v / > ./dir2/list.txt
+ls ./dir2 > ./dir2/list.txt
 
 # копируем содержимое каталога task/dir2 в каталог task/dir3/dir4
 cp -r ./dir2/* ./dir3/dir4/
@@ -41,7 +37,7 @@ find ./ -name "*.txt" > ./dir1/summary.txt
 cat ./dir2/list.txt >> ./dir1/summary.txt
 
 # определяем переменную окружения NAME со значением "Всем студентам"
-NAME='Всем студентам'
+export NAME='Всем студентам'
 
 # запускаем task/dir2/hello.sh с переменной окружения NAME в качестве аргумента
 # вывод скрипта должен дописаться в файл task/dir1/summary.txt
